@@ -1,9 +1,10 @@
 // variables //
+var timerEl = document.querySelector("#cd")
 var quizEl = document.querySelector(".quiz-window");
 var resultEl = document.querySelector(".result");
 
 var questionItr = 0;
-var timer = 30;
+var timer = 5;
 
 // question object to hold question and multiple choice
 var questions = [
@@ -106,6 +107,23 @@ var clickChoice = function (event) {
 }
 
 // counter tick //
+var countdown = function() {
+    var interval = setInterval(function() {
+        // stop counting when timer hits zero
+        if (timer === 0) {
+            clearInterval(interval);
+            quizEnd();
+            return;
+        }
+        timer--;
+        timerEl.textContent = timer;        
+    }, 1000);
+}
+
+var quizStart = function() {
+    showQuestion();
+    countdown();
+}
 
 var quizEnd = function() {
     // clear html
@@ -115,11 +133,12 @@ var quizEnd = function() {
     var endEl = document.createElement("h2");
     endEl.textContent = "Quiz end.";
     
+
     quizEl.appendChild(endEl);
 }
 
 // game start: cycle through quiz //
-var start = function() {
+var init = function() {
     var startButton = document.createElement("button");
     startButton.textContent = "Start Quiz";
     startButton.id = "start";
@@ -127,8 +146,9 @@ var start = function() {
     quizEl.appendChild(startButton);
 }
 
-start();
+init();
+
 
 // when selecting a choice
-quizEl.addEventListener("click", showQuestion);
+quizEl.addEventListener("click", quizStart);
 quizEl.addEventListener("click", clickChoice);
