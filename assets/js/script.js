@@ -4,7 +4,8 @@ var quizEl = document.querySelector(".quiz-window");
 var resultEl = document.querySelector(".result");
 
 var questionItr = 0;
-var timer = 15;
+const timerStart = 15;
+var timer = timerStart;
 
 // question object to hold question and multiple choice
 var questions = [
@@ -30,11 +31,6 @@ var questions = [
 var showQuestion = function() {
     // clear HTMl
     quizEl.innerHTML = "";
-    
-    if (questionItr >= questions.length){
-        quizEnd();
-        return;
-    }
 
     // create question element
     var questionEl = document.createElement("h2");
@@ -65,7 +61,7 @@ var showQuestionChoices = function(question) {
 
         choicesEl.appendChild(choiceEl);
     }
-
+    
     quizEl.appendChild(choicesEl);
 }
 
@@ -80,6 +76,8 @@ var result = function(result) {
 
 // answering question
 var clickChoice = function (event) {
+    console.log("Clicking choice");
+
     // target element from event
     targetEl = event.target;
 
@@ -103,10 +101,19 @@ var clickChoice = function (event) {
             updateTimer(-3)
         }
 
-        showQuestion();
+        // checks if there are anymore questions
+        if (questionItr >= questions.length){
+            // set game to end state
+            timerEl.setAttribute("end", true);
+            return;
+        }
+        else {
+            showQuestion();
+        }
     }
 }
 
+// Updates timer where argument passed is added to timer and updates number that is displayed
 var updateTimer = function(seconds) {
     timer += seconds;
     timerEl.textContent = timer;
@@ -118,8 +125,9 @@ var countdown = function() {
         var end = timerEl.getAttribute("end");
 
         // stop counting when timer hits zero or when quiz is finished
-        if (timer === 0 || end !== null) {
+        if (timer <= 0 || end !== null) {
             clearInterval(interval);
+            console.log("here");
             quizEnd();
             return;
         }
@@ -132,39 +140,58 @@ var countdown = function() {
 
 var quizStart = function() {
     showQuestion();
-    
-    // reset timer display
-    timerEl.textContent = timer;
-
     countdown();
 }
 
 var quizEnd = function() {
+    console.log("In quiz end");
     // clear html
     quizEl.innerHTML = "";
-
-    // set game to end state
-    timerEl.setAttribute("end", true);
-    
+   
     // create ending text element
     var endEl = document.createElement("h2");
-    endEl.textContent = "Quiz end.";
+    endEl.textContent = "Quiz end";
+    
+    // create play again button
+    var backButton = document.createElement("button");
+    backButton.textContent = "Back";
 
     quizEl.appendChild(endEl);
+    quizEl.appendChild(backButton);
+
+    backButton.addEventListener("click", reset);
+}
+
+// reset variables
+var reset = function() {
+    // reset variables
+    timer = timerStart;
+    updateTimer(0);
+
+    timerEl.removeAttribute("end");
+    questionItr = 0;
+
+    // clears quiz-window
+    quizEl.replaceChildren("");
+    resultEl.innerHTML = "";
+    
+    console.log("Reseting");
+    init();
 }
 
 // game start: cycle through quiz //
 var init = function() {
+    // create start button
     var startButton = document.createElement("button");
     startButton.textContent = "Start Quiz";
-    startButton.id = "start";
+    updateTimer(0);
 
     quizEl.appendChild(startButton);
+
+    startButton.addEventListener("click", quizStart);
 }
 
 init();
 
-
 // when selecting a choice
-quizEl.addEventListener("click", quizStart);
 quizEl.addEventListener("click", clickChoice);
