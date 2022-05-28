@@ -100,7 +100,6 @@ var clickChoice = function (event) {
         // incorrect answer
         else {
             result("Incorrect!");
-            // decrease timer by 5
             updateTimer(-3)
         }
 
@@ -124,7 +123,9 @@ var countdown = function() {
             quizEnd();
             return;
         }
+
         timer--;
+
         updateTimer(-1);       
     }, 1000);
 }
