@@ -3,7 +3,7 @@ var quizEl = document.querySelector(".quiz-window");
 var resultEl = document.querySelector(".result");
 
 var questionItr = 0;
-var timer = 25;
+var timer = 30;
 
 // question object to hold question and multiple choice
 var questions = [
@@ -107,14 +107,13 @@ var clickChoice = function (event) {
 
 // counter tick //
 
-
 var quizEnd = function() {
     // clear html
     quizEl.innerHTML = "";
     
     // create ending text element
     var endEl = document.createElement("h2");
-    endEl.textContent = "Game set!";
+    endEl.textContent = "Quiz end.";
     
     quizEl.appendChild(endEl);
 }
