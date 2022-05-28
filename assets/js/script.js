@@ -33,9 +33,6 @@ var showQuestion = function() {
         return;
     }
 
-    // print question
-    console.log(questions[questionItr].question);
-
     // create question element
     var questionEl = document.createElement("h2");
     questionEl.textContent = questions[questionItr].question;
@@ -52,9 +49,7 @@ var showQuestionChoices = function(question) {
     // create list element for choices
     var choicesEl = document.createElement("ol");
 
-    for (var i = 0; i < questionChoice.length; i++) {
-        console.log(`${questionChoice[i].choice} ${questionChoice[i].answer}`);
-        
+    for (var i = 0; i < questionChoice.length; i++) {  
         // create choice element
         var choiceEl = document.createElement("li");
         choiceEl.textContent = questionChoice[i].choice;
