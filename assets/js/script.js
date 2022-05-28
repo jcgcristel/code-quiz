@@ -3,6 +3,7 @@ var quizEl = document.querySelector(".quiz-window");
 var resultEl = document.querySelector(".result");
 
 var questionItr = 0;
+var timer = 25;
 
 // question object to hold question and multiple choice
 var questions = [
@@ -67,14 +68,13 @@ var showQuestionChoices = function(question) {
     quizEl.appendChild(choicesEl);
 }
 
-// called when question answered correctly
-var correct = function() {
-    console.log("Correct!");
-}
+// print result
+var result = function(result) {  
+    // element to hold result
+    var showResultEl = document.createElement("h3");
+    showResultEl .textContent = result;
 
-// called when question answered incorrectly
-var incorrect = function() {
-    console.log("Incorrect!");
+    resultEl.appendChild(showResultEl);
 }
 
 // answering question
@@ -84,7 +84,6 @@ var clickChoice = function (event) {
 
     // when selecting a choice
     if (targetEl.matches("li.quiz-choice")) {
-        console.log(`Clicked Choice ${targetEl.textContent}`);
         questionItr++;
 
         // get answer state
@@ -95,16 +94,15 @@ var clickChoice = function (event) {
         
         // correct answer
         if (isCorrect){
-            correct();
+            result("Correct!");
         } 
         // incorrect answer
         else {
-            incorrect();
+            result("Incorrect!");
         }
 
         showQuestion();
     }
-
 }
 
 // counter tick //
