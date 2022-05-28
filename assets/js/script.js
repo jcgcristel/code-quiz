@@ -1,5 +1,6 @@
 // variables //
 var quizEl = document.querySelector(".quiz-window");
+var resultEl = document.querySelector(".result");
 
 var questionItr = 0;
 
@@ -29,7 +30,7 @@ var showQuestion = function() {
     quizEl.innerHTML = "";
     
     if (questionItr >= questions.length){
-        console.log("Quiz end");
+        quizEnd();
         return;
     }
 
@@ -54,10 +55,26 @@ var showQuestionChoices = function(question) {
         var choiceEl = document.createElement("li");
         choiceEl.textContent = questionChoice[i].choice;
         choiceEl.className = "quiz-choice"
+
+        // create id to classify as the answer
+        if (questionChoice[i].answer === true) {
+            choiceEl.setAttribute("answer", true);
+        }
+
         choicesEl.appendChild(choiceEl);
     }
 
     quizEl.appendChild(choicesEl);
+}
+
+// called when question answered correctly
+var correct = function() {
+    console.log("Correct!");
+}
+
+// called when question answered incorrectly
+var incorrect = function() {
+    console.log("Incorrect!");
 }
 
 // answering question
@@ -69,19 +86,52 @@ var clickChoice = function (event) {
     if (targetEl.matches("li.quiz-choice")) {
         console.log(`Clicked Choice ${targetEl.textContent}`);
         questionItr++;
+
+        // get answer state
+        isCorrect = targetEl.getAttribute("answer");
+
+        // clear result html
+        resultEl.innerHTML = "";
+        
+        // correct answer
+        if (isCorrect){
+            correct();
+        } 
+        // incorrect answer
+        else {
+            incorrect();
+        }
+
+        showQuestion();
     }
 
-    showQuestion();
 }
 
 // counter tick //
 
-// game start: cycle through quiz //
-var quizStart = function() {
+
+var quizEnd = function() {
+    // clear html
+    quizEl.innerHTML = "";
     
+    // create ending text element
+    var endEl = document.createElement("h2");
+    endEl.textContent = "Game set!";
+    
+    quizEl.appendChild(endEl);
 }
 
+// game start: cycle through quiz //
+var start = function() {
+    var startButton = document.createElement("button");
+    startButton.textContent = "Start Quiz";
+    startButton.id = "start";
 
-showQuestion();
+    quizEl.appendChild(startButton);
+}
+
+start();
+
 // when selecting a choice
+quizEl.addEventListener("click", showQuestion);
 quizEl.addEventListener("click", clickChoice);
