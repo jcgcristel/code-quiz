@@ -4,7 +4,7 @@ var quizEl = document.querySelector(".quiz-window");
 var resultEl = document.querySelector(".result");
 
 var questionItr = 0;
-var timer = 5;
+var timer = 15;
 
 // question object to hold question and multiple choice
 var questions = [
@@ -100,39 +100,54 @@ var clickChoice = function (event) {
         // incorrect answer
         else {
             result("Incorrect!");
+            // decrease timer by 5
+            updateTimer(-3)
         }
 
         showQuestion();
     }
 }
 
+var updateTimer = function(seconds) {
+    timer += seconds;
+    timerEl.textContent = timer;
+}
+
 // counter tick //
 var countdown = function() {
     var interval = setInterval(function() {
-        // stop counting when timer hits zero
-        if (timer === 0) {
+        var end = timerEl.getAttribute("end");
+
+        // stop counting when timer hits zero or when quiz is finished
+        if (timer === 0 || end !== null) {
             clearInterval(interval);
             quizEnd();
             return;
         }
         timer--;
-        timerEl.textContent = timer;        
+        updateTimer(-1);       
     }, 1000);
 }
 
 var quizStart = function() {
     showQuestion();
+    
+    // reset timer display
+    timerEl.textContent = timer;
+
     countdown();
 }
 
 var quizEnd = function() {
     // clear html
     quizEl.innerHTML = "";
+
+    // set game to end state
+    timerEl.setAttribute("end", true);
     
     // create ending text element
     var endEl = document.createElement("h2");
     endEl.textContent = "Quiz end.";
-    
 
     quizEl.appendChild(endEl);
 }
