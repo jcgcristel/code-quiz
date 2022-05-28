@@ -4,7 +4,7 @@ var quizEl = document.querySelector(".quiz-window");
 var resultEl = document.querySelector(".result");
 
 var questionItr = 0;
-const timerStart = 15;
+const timerStart = 30;
 var timer = timerStart;
 
 // question object to hold question and multiple choice
@@ -68,7 +68,7 @@ var showQuestionChoices = function(question) {
 // print result
 var result = function(result) {  
     // element to hold result
-    var showResultEl = document.createElement("h3");
+    var showResultEl = document.createElement("p");
     showResultEl .textContent = result;
 
     resultEl.appendChild(showResultEl);
@@ -93,11 +93,11 @@ var clickChoice = function (event) {
         
         // correct answer
         if (isCorrect){
-            result("Correct!");
+            result("Correct");
         } 
         // incorrect answer
         else {
-            result("Incorrect!");
+            result("Incorrect");
             updateTimer(-3)
         }
 
@@ -153,13 +153,19 @@ var quizEnd = function() {
     endEl.textContent = "Quiz end";
     
     // create play again button
-    var backButton = document.createElement("button");
-    backButton.textContent = "Back";
+    var backBtnEl = document.createElement("button");
+    backBtnEl.textContent = "Back";
 
+    // create score elements
+    var scoreEl = document.createElement("div")
+    scoreEl.textContent = `You scored: ${timer}`;
+
+    // display created elements
     quizEl.appendChild(endEl);
-    quizEl.appendChild(backButton);
+    quizEl.appendChild(scoreEl);
+    quizEl.appendChild(backBtnEl);
 
-    backButton.addEventListener("click", reset);
+    backBtnEl.addEventListener("click", reset);
 }
 
 // reset variables
@@ -181,11 +187,17 @@ var reset = function() {
 
 // game start: cycle through quiz //
 var init = function() {
+    // create quiz title
+    var playQuizEl = document.createElement("h2");
+    playQuizEl.textContent = "Test your Knowledge";
+
     // create start button
     var startButton = document.createElement("button");
     startButton.textContent = "Start Quiz";
     updateTimer(0);
 
+    // display created elements
+    quizEl.appendChild(playQuizEl)
     quizEl.appendChild(startButton);
 
     startButton.addEventListener("click", quizStart);
