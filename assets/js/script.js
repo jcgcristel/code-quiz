@@ -147,6 +147,59 @@ var quizStart = function() {
     countdown();
 }
 
+// game start: cycle through quiz //
+var init = function() {
+    // create quiz title
+    var playQuizEl = document.createElement("h2");
+    playQuizEl.textContent = "Test your Knowledge";
+
+    // create start button
+    var startButton = document.createElement("button");
+    startButton.textContent = "Start Quiz";
+    updateTimer(0);
+
+    // display created elements
+    quizEl.appendChild(playQuizEl)
+    quizEl.appendChild(startButton);
+
+    startButton.addEventListener("click", quizStart);
+}
+
+// reset variables
+var reset = function() {
+    // reset variables
+    timer = timerStart;
+    updateTimer(0);
+
+    timerEl.removeAttribute("end");
+    questionItr = 0;
+
+    // clears quiz-window
+    quizEl.replaceChildren("");
+    resultEl.innerHTML = "";
+    
+    console.log("Reseting");
+    init();
+}
+
+// play again screen
+var playAgain = function() {
+    quizEl.innerHTML = "";
+    resultEl.innerHTML = "";
+
+    // create text element to return to home screen
+    var playAgainEl = document.createElement("h2");
+    playAgainEl.textContent = "Return to Home Screen";
+
+    var backBtnEl = document.createElement("button");
+    backBtnEl.textContent = "Back";
+
+    quizEl.appendChild(playAgainEl);
+    quizEl.appendChild(backBtnEl);
+
+    backBtnEl.addEventListener("click", reset);
+}
+
 // checks if initials text box is empty
 var scoreSubmitHandler = function() {
     var initials = document.querySelector("#initials").value;
@@ -191,8 +244,11 @@ var scoreSubmission = function(score) {
 
     // new score added to localStorage
     localStorage.setItem("scores", JSON.stringify(savedScores));
+
+    playAgain();
 }
 
+// end game screen
 var quizEnd = function() {
     // clear html
     quizEl.innerHTML = "";
@@ -221,41 +277,6 @@ var quizEnd = function() {
     quizEl.appendChild(scoreSubmitBtnEl);
     
     scoreSubmitBtnEl.addEventListener("click", scoreSubmitHandler);
-}
-
-// reset variables
-var reset = function() {
-    // reset variables
-    timer = timerStart;
-    updateTimer(0);
-
-    timerEl.removeAttribute("end");
-    questionItr = 0;
-
-    // clears quiz-window
-    quizEl.replaceChildren("");
-    resultEl.innerHTML = "";
-    
-    console.log("Reseting");
-    init();
-}
-
-// game start: cycle through quiz //
-var init = function() {
-    // create quiz title
-    var playQuizEl = document.createElement("h2");
-    playQuizEl.textContent = "Test your Knowledge";
-
-    // create start button
-    var startButton = document.createElement("button");
-    startButton.textContent = "Start Quiz";
-    updateTimer(0);
-
-    // display created elements
-    quizEl.appendChild(playQuizEl)
-    quizEl.appendChild(startButton);
-
-    startButton.addEventListener("click", quizStart);
 }
 
 init();
