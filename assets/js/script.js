@@ -6,6 +6,7 @@ var resultEl = document.querySelector(".result");
 var questionItr = 0;
 const timerStart = 30;
 var timer = timerStart;
+var scores = [];
 
 // question object to hold question and multiple choice
 var questions = [
@@ -66,7 +67,10 @@ var showQuestionChoices = function(question) {
 }
 
 // print result
-var result = function(result) {  
+var result = function(result) {
+    // clear results
+    resultEl.innerHTML = "";
+    
     // element to hold result
     var showResultEl = document.createElement("p");
     showResultEl .textContent = result;
@@ -143,8 +147,53 @@ var quizStart = function() {
     countdown();
 }
 
+// checks if initials text box is empty
+var scoreSubmitHandler = function() {
+    var initials = document.querySelector("#initials").value;
+    console.log(initials);
+
+    if (initials === null || initials === "") {
+        result("Please input your initials before submitting.");
+        alert("Please input your initials before submitting.");
+        return;
+    }
+    
+    var score = {
+        initials: initials,
+        score: timer
+    }
+
+    console.log(score);
+
+    // submits score
+    scoreSubmission(score);
+}
+
+// store score into localStorage
+var scoreSubmission = function(score) {   
+    var savedScores = localStorage.getItem("scores");
+
+    // check if there are locally stored scores
+    if (savedScores === null) {
+        // convert score object into an array
+        scores.push(score);
+        // create a new key to store scores
+        localStorage.setItem("scores", JSON.stringify(scores))
+        playAgain();
+        return;
+    }
+   
+    // parse scores from localStorage
+    savedScores = JSON.parse(savedScores);
+
+    // add new score
+    savedScores.push(score);
+
+    // new score added to localStorage
+    localStorage.setItem("scores", JSON.stringify(savedScores));
+}
+
 var quizEnd = function() {
-    console.log("In quiz end");
     // clear html
     quizEl.innerHTML = "";
    
@@ -152,20 +201,26 @@ var quizEnd = function() {
     var endEl = document.createElement("h2");
     endEl.textContent = "Quiz end";
     
-    // create play again button
-    var backBtnEl = document.createElement("button");
-    backBtnEl.textContent = "Back";
-
-    // create score elements
+    // create score element
     var scoreEl = document.createElement("div")
     scoreEl.textContent = `You scored: ${timer}`;
 
+    // create score submission elements
+    // input
+    var scoreSubmitInputEl = document.createElement("input");
+    scoreSubmitInputEl.placeholder = "Enter initials";
+    scoreSubmitInputEl.id = "initials";
+    // submit
+    var scoreSubmitBtnEl = document.createElement("button");
+    scoreSubmitBtnEl.textContent = "Submit"
+    
     // display created elements
     quizEl.appendChild(endEl);
     quizEl.appendChild(scoreEl);
-    quizEl.appendChild(backBtnEl);
-
-    backBtnEl.addEventListener("click", reset);
+    quizEl.appendChild(scoreSubmitInputEl);
+    quizEl.appendChild(scoreSubmitBtnEl);
+    
+    scoreSubmitBtnEl.addEventListener("click", scoreSubmitHandler);
 }
 
 // reset variables
