@@ -1,0 +1,80 @@
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 18px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+/* Main sections */
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10% 20%;
+}
+
+.timer {
+    padding-left: 25px;
+    margin-bottom: 10px;
+}
+
+.quiz-window {
+    width: 650px;
+    border-radius: 25px;
+    background-color: silver;
+    padding: 25px 40px;
+}
+
+.result {
+    padding-left: 25px;
+}
+
+/* multiple choice buttons */
+
+li {
+    background-color: white;
+    border-radius: 10px;
+    margin: 30px;
+    padding: 10px;
+}
+
+li:hover {
+    background-color: paleturquoise;
+}
+
+/* buttons */
+
+button {
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+}
+
+button:hover {
+    background-color: paleturquoise;
+}
+
+/* input */
+
+input {
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+/* result colors */
+.correct {
+    color: green;
+    margin: auto;
+}
+
+.incorrect {
+    color: red;
+    margin: auto;
+}

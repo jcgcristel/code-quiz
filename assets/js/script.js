@@ -4,12 +4,11 @@ var quizEl = document.querySelector(".quiz-window");
 var resultEl = document.querySelector(".result");
 
 var questionItr = 0;
-const timerStart = 15;
+const timerStart = 60;
 var timer = timerStart;
 var scores = [];
 
-// Quiz from https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
-
+// Quiz questsions from https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
 // question object to hold question and multiple choice
 var questions = [
     {
@@ -157,11 +156,13 @@ var clickChoice = function (event) {
         // correct answer
         if (isCorrect){
             result("Correct");
+            resultEl.className = "correct"
         } 
         // incorrect answer
         else {
             result("Incorrect");
             updateTimer(-3)
+            resultEl.className =  result, incorrect"
         }
 
         // checks if there are anymore questions
