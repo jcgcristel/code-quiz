@@ -138,8 +138,6 @@ var result = function(result) {
 
 // answering question
 var clickChoice = function (event) {
-    console.log("Clicking choice");
-
     // target element from event
     targetEl = event.target;
 
@@ -162,7 +160,7 @@ var clickChoice = function (event) {
         else {
             result("Incorrect");
             updateTimer(-3)
-            resultEl.className =  result, incorrect"
+            resultEl.className =  "incorrect"
         }
 
         // checks if there are anymore questions
@@ -191,7 +189,6 @@ var countdown = function() {
         // stop counting when timer hits zero or when quiz is finished
         if (timer <= 0 || end !== null) {
             clearInterval(interval);
-            console.log("here");
             quizEnd();
             return;
         }
@@ -234,8 +231,7 @@ var reset = function() {
     // clears quiz-window
     quizEl.replaceChildren("");
     resultEl.innerHTML = "";
-    
-    console.log("Reseting");
+
     init();
 }
 
@@ -260,7 +256,6 @@ var playAgain = function() {
 // checks if initials text box is empty
 var scoreSubmitHandler = function() {
     var initials = document.querySelector("#initials").value;
-    console.log(initials);
 
     if (initials === null || initials === "") {
         result("Please input your initials before submitting.");
@@ -272,8 +267,6 @@ var scoreSubmitHandler = function() {
         initials: initials,
         score: timer
     }
-
-    console.log(score);
 
     // submits score
     scoreSubmission(score);

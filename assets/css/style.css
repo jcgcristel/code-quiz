@@ -12,23 +12,25 @@ h2 {
 main {
     display: flex;
     flex-wrap: wrap;
-    padding: 10% 20%;
+    align-items: center;
+    justify-content: center;
+    margin: 10% 25%;
+}
+
+.info {
+    width: 100%;
+    text-align: left;
 }
 
 .timer {
-    padding-left: 25px;
-    margin-bottom: 10px;
+    margin: 10px 25px;
 }
 
-.quiz-window {
-    width: 650px;
+.quiz {
+    width: 100%;
     border-radius: 25px;
     background-color: silver;
     padding: 25px 40px;
-}
-
-.result {
-    padding-left: 25px;
 }
 
 /* multiple choice buttons */
@@ -70,11 +72,15 @@ input {
 
 /* result colors */
 .correct {
+    width: 100%;    
+    text-align: center;
     color: green;
     margin: auto;
 }
 
-.incorrect {
+.incorrect {    
+    width: 100%;
+    text-align: center;
     color: red;
     margin: auto;
 }
