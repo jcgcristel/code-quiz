@@ -27,7 +27,7 @@ main {
     padding: 10px;
 }
 
-#return-home {
+.return-home {
     flex-grow: 1;
 }
 
@@ -35,6 +35,12 @@ main {
     flex-grow: 1;
     text-align: right;
 }
+
+#clear-score:hover {
+    color: red;
+}
+
+/* scoreboard */
 
 .scoreboard {
     display: flex;
@@ -61,6 +67,7 @@ li {
 }
 
 .initial {
+    padding-left: 30px;
     text-align: right;
 }
 
