@@ -1,6 +1,6 @@
 // variables //
 var timerEl = document.querySelector("#cd")
-var quizEl = document.querySelector(".quiz-window");
+var quizEl = document.querySelector(".main-window");
 var resultEl = document.querySelector(".result");
 
 var questionItr = 0;
@@ -228,7 +228,7 @@ var reset = function() {
     timerEl.removeAttribute("end");
     questionItr = 0;
 
-    // clears quiz-window
+    // clears main-window
     quizEl.replaceChildren("");
     resultEl.innerHTML = "";
 
