@@ -8,24 +8,83 @@ const timerStart = 30;
 var timer = timerStart;
 var scores = [];
 
+// Quiz from https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
+
 // question object to hold question and multiple choice
 var questions = [
     {
-        question: "Question 1",
+        question: "Inside which HTML element do we put the JavaScript",
         choices: [
-            {choice: "A", answer: true},
-            {choice: "B", answer: false},
-            {choice: "C", answer: false},
-            {choice: "D", answer: false}]
+            {choice: "<scripting>", answer: false},
+            {choice: "<javascript>", answer: false},
+            {choice: "<js>", answer: false},
+            {choice: "<script>", answer: true}]
     },
     {
-        question: "Question 2",
+        question: 'How do you write "Hello World in an alert box?',
         choices: [
-            {choice: "E", answer: false},
-            {choice: "F", answer: true},
-            {choice: "G", answer: false},
-            {choice: "H", answer: false}]
-        },
+            {choice: 'msgBox("Hello World");', answer: false},
+            {choice: 'alertBox("Hello World");', answer: false},
+            {choice: 'alert("Hello World");', answer: true},
+            {choice: 'msg("Hello World");', answer: false}]
+    },
+    {
+        question: "Where is the correct place to insert a JavaScript?",
+        choices: [
+            {choice: "The <head> section", answer: false},
+            {choice: "The <body> section", answer: false},
+            {choice: "Both the <head> section and the <body> section are correct", answer: true}]
+    },
+    {
+        question: 'What si the correct syntax for referring to an external script called "xxx.js"?',
+        choices: [
+            {choice: '<script href="xxx.js"', answer: false},
+            {choice: '<script src="xxx.js"', answer: true},
+            {choice: '<script name="xxx.js">', answer: false}]
+    },
+    {
+        question: 'The external JavaScript file must contain the <script> tag.',
+        choices: [
+            {choice: 'True', answer: false},
+            {choice: 'False', answer: true}]
+    },
+    {
+        question: 'How do you create a function in JavaScript?',
+        choices: [
+            {choice: 'function = myFunction()', answer: false},
+            {choice: 'function:myFunction()', answer: false},
+            {choice: 'function myFunction()', answer: true}]
+    },
+    {
+        question: 'How do you call a function named "myFunction"?',
+        choices: [
+            {choice: 'myFunction()', answer: true},
+            {choice: 'call myFunction()', answer: false},
+            {choice: 'call function myFunction()', answer: false}]
+    },
+    {
+        question: 'How to write an IF statement in JavaScript?',
+        choices: [
+            {choice: 'if i = 5 then', answer: false},
+            {choice: 'if i = 5', answer: false},
+            {choice: 'if i == 5 then', answer: false},
+            {choice: 'if (i == 5)', answer: true}]
+    },
+    {
+        question: 'How to write an IF statement for executing some code if "i" is NOT equal to 5?',
+        choices: [
+            {choice: 'if i != 5 then', answer: false},
+            {choice: 'if (i != 5)', answer: true},
+            {choice: 'if (i <> 5)', answer: false},
+            {choice: 'ig i <> 5', answer: false}]
+    },
+    {
+        question: 'How does a WHILE loop start?',
+        choices: [
+            {choice: 'while (i <= 10; i++)', answer: false},
+            {choice: 'while (i <= 10)', answer: true},
+            {choice: 'while i = 1 to 10', answer: false}]
+    }
 ]
 
 // display quiz question //
