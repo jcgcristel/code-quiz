@@ -4,7 +4,7 @@ var quizEl = document.querySelector(".quiz-window");
 var resultEl = document.querySelector(".result");
 
 var questionItr = 0;
-const timerStart = 30;
+const timerStart = 15;
 var timer = timerStart;
 var scores = [];
 
@@ -194,10 +194,7 @@ var countdown = function() {
             quizEnd();
             return;
         }
-
-        timer--;
-
-        updateTimer(-1);       
+        updateTimer(-1);   
     }, 1000);
 }
 
