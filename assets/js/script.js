@@ -159,7 +159,7 @@ var clickChoice = function (event) {
         // incorrect answer
         else {
             result("Incorrect");
-            updateTimer(-3)
+            updateTimer(-5)
             resultEl.className =  "incorrect"
         }
 
