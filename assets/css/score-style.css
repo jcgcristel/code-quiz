@@ -32,13 +32,21 @@ main {
 }
 
 #clear-score {
-    flex-grow: 1;
+    flex-grow: 0;
     text-align: right;
 }
 
-#clear-score:hover {
+#clear-score:hover {    
+    font-weight: bold;
     color: red;
 }
+
+
+a:hover {
+    font-weight: bold;
+    color: green;
+}
+
 
 /* scoreboard */
 

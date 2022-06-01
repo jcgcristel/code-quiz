@@ -12,7 +12,7 @@ var scores = [];
 // question object to hold question and multiple choice
 var questions = [
     {
-        question: "Inside which HTML element do we put the JavaScript",
+        question: "Inside which HTML element do we put the JavaScript?",
         choices: [
             {choice: "<scripting>", answer: false},
             {choice: "<javascript>", answer: false},
@@ -94,6 +94,7 @@ var showQuestion = function() {
     // create question element
     var questionEl = document.createElement("h2");
     questionEl.textContent = questions[questionItr].question;
+    questionEl.className = "quiz-question"
     quizEl.appendChild(questionEl);
 
     // print question choices
@@ -124,19 +125,19 @@ var showQuestionChoices = function(question) {
     quizEl.appendChild(choicesEl);
 }
 
-// print result
+// print result when choosing an answer
 var result = function(result) {
     // clear results
     resultEl.innerHTML = "";
     
     // element to hold result
     var showResultEl = document.createElement("p");
-    showResultEl .textContent = result;
+    showResultEl.textContent = result;
 
     resultEl.appendChild(showResultEl);
 }
 
-// answering question
+// handler for when choosing an answer
 var clickChoice = function (event) {
     // target element from event
     targetEl = event.target;
@@ -181,7 +182,7 @@ var updateTimer = function(seconds) {
     timerEl.textContent = timer;
 }
 
-// counter tick //
+// counter tick // decrease by 1 second every 1 second
 var countdown = function() {
     var interval = setInterval(function() {
         var end = timerEl.getAttribute("end");
@@ -192,6 +193,8 @@ var countdown = function() {
             quizEnd();
             return;
         }
+
+        // counter ticking by 1s
         updateTimer(-1);   
     }, 1000);
 }
@@ -201,22 +204,41 @@ var quizStart = function() {
     countdown();
 }
 
-// game start: cycle through quiz //
-var init = function() {
+var quizInstruction = function () {
+    // clear html
+    quizEl.innerHTML = "";
+
     // create quiz title
-    var playQuizEl = document.createElement("h2");
-    playQuizEl.textContent = "Test your Knowledge";
+    var playQuizEl = document.createElement("p");
+    playQuizEl.textContent = "You have 60s to finish the quiz.";
 
     // create start button
     var startButton = document.createElement("button");
-    startButton.textContent = "Start Quiz";
-    updateTimer(0);
+    startButton.textContent = "Start Quiz!";
 
     // display created elements
-    quizEl.appendChild(playQuizEl)
+    quizEl.appendChild(playQuizEl);
     quizEl.appendChild(startButton);
 
     startButton.addEventListener("click", quizStart);
+}
+
+// game start: cycle through quiz //
+var init = function() {
+    // create quiz title
+    var startEl = document.createElement("h1");
+    startEl.textContent = "Test your Knowledge";
+
+    // create start button
+    var startButton = document.createElement("button");
+    startButton.textContent = "Let's go!";
+    updateTimer(0);
+
+    // display created elements
+    quizEl.appendChild(startEl)
+    quizEl.appendChild(startButton);
+
+    startButton.addEventListener("click", quizInstruction);
 }
 
 // reset variables
@@ -241,7 +263,7 @@ var playAgain = function() {
     resultEl.innerHTML = "";
 
     // create text element to return to home screen
-    var playAgainEl = document.createElement("h2");
+    var playAgainEl = document.createElement("h1");
     playAgainEl.textContent = "Return to Home Screen";
 
     var backBtnEl = document.createElement("button");
@@ -304,7 +326,7 @@ var quizEnd = function() {
     quizEl.innerHTML = "";
    
     // create ending text element
-    var endEl = document.createElement("h2");
+    var endEl = document.createElement("h1");
     endEl.textContent = "Quiz end";
     
     // create score element

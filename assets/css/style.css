@@ -4,7 +4,16 @@
     text-decoration: none;
 }
 
+h1 {
+    font-size: 32px;
+    /* margin: 30px 50px; */
+}
+
 h2 {
+    margin-top: 25px;
+    background-color: rgb(66, 66, 66);
+    border-radius: 25px;
+    color: white;
     font-size: 24px;
 }
 
@@ -26,8 +35,7 @@ main {
 }
 
 .info-timer {
-    flex-grow: 1;
-    text-align: left;
+    flex-grow: 0;
     text-align: left;
 }
 
@@ -40,18 +48,34 @@ main {
     width: 100%;
     border-radius: 25px;
     background-color: silver;
-    padding: 25px 40px;
+    padding-bottom: 30px;
+    padding: 25px 10px; 
+}
+
+.main-window {
+    padding: 25px 50px; 
+}
+
+.quiz-question {
+    padding: 30px 20px; 
+}
+
+
+a:hover {
+    font-weight: bold;
+    color: green;
 }
 
 /* multiple choice buttons */
 
 ol {
-    margin: 0;
+    /* margin: 30px 50px; */
+    /* margin: 0; */
     padding: 0;
 }
 
 li {
-
+    border: 1px solid grey;
     background-color: white;
     border-radius: 10px;
     margin: 30px;
@@ -64,9 +88,9 @@ li:hover {
 
 /* buttons */
 
-button {
-    
-    border: none;
+button {   
+    border: 1px solid grey;
+    box-shadow: 10%;
     border-radius: 10px;
     background-color: white;
     padding: 10px;
