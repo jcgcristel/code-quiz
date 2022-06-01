@@ -20,7 +20,7 @@ var questions = [
             {choice: "<script>", answer: true}]
     },
     {
-        question: 'How do you write "Hello World in an alert box?',
+        question: 'How do you write "Hello World" in an alert box?',
         choices: [
             {choice: 'msgBox("Hello World");', answer: false},
             {choice: 'alertBox("Hello World");', answer: false},
@@ -107,6 +107,7 @@ var showQuestionChoices = function(question) {
 
     // create list element for choices
     var choicesEl = document.createElement("ol");
+    choicesEl.className = "choices";
 
     for (var i = 0; i < questionChoice.length; i++) {  
         // create choice element
@@ -281,7 +282,6 @@ var scoreSubmitHandler = function() {
 
     if (initials === null || initials === "") {
         result("Please input your initials before submitting.");
-        alert("Please input your initials before submitting.");
         return;
     }
     

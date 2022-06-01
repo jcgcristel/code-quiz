@@ -11,6 +11,7 @@ h2 {
 /* Main sections */
 
 main {
+    color: white;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -32,6 +33,7 @@ main {
 }
 
 #clear-score {
+    color: rgb(39, 6, 77);
     flex-grow: 0;
     text-align: right;
 }
@@ -41,7 +43,6 @@ main {
     color: red;
 }
 
-
 a:hover {
     font-weight: bold;
     color: green;
@@ -50,12 +51,20 @@ a:hover {
 
 /* scoreboard */
 
-.scoreboard {
-    display: flex;
+.scoreboard-window {
+    width: 100%;
     width: 100%;
     border-radius: 25px;
-    background-color: silver;
+    background-color: rgb(86, 84, 110);
     padding: 25px 40px;
+    display: block;
+}
+
+.scoreboard {
+    display: flex;
+    border-radius: 25px;
+    padding: 15px 25px;
+    background-color: rgb(68, 65, 95);   
 }
 
 /* score list */
@@ -66,7 +75,7 @@ a:hover {
 }
 
 li {
-    background-color: white;
+    background-color: rgb(151, 177, 197);
     border-radius: 10px;
     margin-top: 30px;
     margin-bottom: 30px;
@@ -75,12 +84,14 @@ li {
 }
 
 .initial {
+    flex-grow: 1;
+    list-style: none;
+}
+
+.score {  
     padding-left: 30px;
     text-align: right;
 }
 
-.score {  
-    list-style: none;
-}
 
 
