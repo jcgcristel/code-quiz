@@ -15,7 +15,7 @@ At the end of the quiz, you will be prompted to submit your score and this can b
 ## Website
 https://jcgcristel.github.io/code-quiz/ 
 
-![Alt text](./assets/images/site-preview.JPG "Site Preview")
+![Alt text](./assets/images/site-preview.png "Site Preview")
 
 ## Contribution
 Joyce C. Garnett
